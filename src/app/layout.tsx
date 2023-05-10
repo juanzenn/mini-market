@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/toaster";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
@@ -27,7 +28,10 @@ export default async function RootLayout({
 
   return (
     <html lang="es">
-      <body className={`${inter.variable} ${themeClass}`}>{children}</body>
+      <body className={`${inter.variable} ${themeClass}`}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useToast } from "@/components/ui/use-toast";
 import { Github, Loader } from "lucide-react";
 import { signIn } from "next-auth/react";
 import React, { FormEvent, useState } from "react";
@@ -12,6 +13,7 @@ export default function AuthForm() {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [showHelper, setShowHelper] = useState(false);
   const [loadingEmail, setLoadingEmail] = useState(false);
+  const { toast } = useToast();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -20,9 +22,13 @@ export default function AuthForm() {
     try {
       await signIn("email", { email, callbackUrl: "/" });
     } catch (error) {
-      console.log(error);
+      toast({
+        title: "Oh no!",
+        description:
+          "Ocurrió un error al intentar iniciar sesión. Intenta de nuevo.",
+        variant: "destructive",
+      });
     }
-
     setLoadingEmail(false);
   }
 
