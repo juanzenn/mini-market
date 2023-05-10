@@ -1,9 +1,12 @@
-import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 
-const inter = Inter({ subsets: ["latin"], weight: "variable" });
+const inter = Inter({
+  subsets: ["latin"],
+  weight: "variable",
+  variable: "--font-inter",
+});
 
 export const metadata = {
   title: "Mini Market",
@@ -24,7 +27,7 @@ export default async function RootLayout({
 
   return (
     <html lang="es">
-      <body className={`${inter.className} ${themeClass}`}>{children}</body>
+      <body className={`${inter.variable} ${themeClass}`}>{children}</body>
     </html>
   );
 }

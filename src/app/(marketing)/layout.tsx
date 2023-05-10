@@ -14,8 +14,15 @@ export default async function MarketingLayout({ children }: Props) {
 
   return (
     <>
-      <Navbar defaultTheme={themeCookie} />
-      {children}
+      <Navbar
+        defaultTheme={themeCookie}
+        navLinks={[
+          { href: "/", label: "Inicio" },
+          { href: "/contact", label: "Contacto" },
+        ]}
+      />
+
+      <main className="container py-6 min-h-full">{children}</main>
     </>
   );
 }
