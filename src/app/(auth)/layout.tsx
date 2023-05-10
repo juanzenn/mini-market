@@ -21,7 +21,7 @@ export default async function AuthLayout({ children }: Props) {
         Inicio
       </Link>
 
-      <main className="container py-6 min-h-full">{children}</main>
+      <main className="container py-6">{children}</main>
     </>
   );
 }

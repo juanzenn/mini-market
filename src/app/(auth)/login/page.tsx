@@ -1,14 +1,24 @@
 import AuthForm from "@/components/auth-form";
-import { TypographyH1 } from "@/components/ui/typography";
+import { TypographyH1, TypographyMuted } from "@/components/ui/typography";
+import { getCurrentUser } from "@/lib/session";
 import React from "react";
+import { redirect } from "next/navigation";
 
-type Props = {};
+export default async function LoginPage() {
+  const user = await getCurrentUser();
 
-export default function LoginPage({}: Props) {
+  if (user) {
+    redirect("/dashboard");
+  }
+
   return (
-    <>
-      <TypographyH1>Login</TypographyH1>
+    <div className="mx-auto text-center mt-48">
+      <TypographyH1 className="mb-2">Bienvenido de vuelta</TypographyH1>
+      <TypographyMuted>
+        Inicia sesión con el servicio de tu preferencia
+      </TypographyMuted>
+
       <AuthForm />
-    </>
+    </div>
   );
 }

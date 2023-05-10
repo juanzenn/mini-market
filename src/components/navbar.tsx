@@ -11,11 +11,12 @@ interface Props {
     href: string;
     label: string;
   }[];
+  children?: React.ReactNode;
 }
 
 // Add prop for "user actions (login, register, userIcon if user)"
 
-export default function Navbar({ defaultTheme, navLinks }: Props) {
+export default function Navbar({ defaultTheme, navLinks, children }: Props) {
   return (
     <ThemeProvider defaultTheme={defaultTheme}>
       <header className="">
@@ -34,6 +35,8 @@ export default function Navbar({ defaultTheme, navLinks }: Props) {
             ))}
           </ul>
 
+          {children}
+
           <ThemeProvider.ChangeTheme />
         </nav>
       </header>
@@ -43,7 +46,7 @@ export default function Navbar({ defaultTheme, navLinks }: Props) {
 
 function NavLink({ href, label }: { href: string; label: string }) {
   return (
-    <li className="inline-block mr-4 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-100 transition-colors duration-200">
+    <li className="inline-block mr-4 text-foreground hover:text-foreground/60 transition-colors duration-200">
       <Link href={href} className="font-medium">
         {label}
       </Link>

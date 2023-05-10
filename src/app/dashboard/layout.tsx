@@ -1,8 +1,5 @@
 import Navbar from "@/components/navbar";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { cookies } from "next/headers";
-import Link from "next/link";
 import React from "react";
 
 type Props = {
@@ -17,15 +14,8 @@ export default async function MarketingLayout({ children }: Props) {
 
   return (
     <>
-      <Navbar
-        defaultTheme={themeCookie}
-        navLinks={[
-          { href: "/", label: "Inicio" },
-          { href: "/contact", label: "Contacto" },
-          { href: "/search", label: "Descubrir" },
-        ]}
-      >
-        <Link
+      <Navbar defaultTheme={themeCookie}>
+        {/* <Link
           href="/login"
           className={cn(
             buttonVariants({
@@ -35,7 +25,7 @@ export default async function MarketingLayout({ children }: Props) {
           )}
         >
           Login
-        </Link>
+        </Link> */}
       </Navbar>
 
       <main className="container py-6 ">{children}</main>

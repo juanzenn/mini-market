@@ -1,25 +1,66 @@
 "use client";
 
+import { Github, Loader } from "lucide-react";
 import { signIn } from "next-auth/react";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
+import { z } from "zod";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { TypographyMuted } from "./ui/typography";
 
 export default function AuthForm() {
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const [showHelper, setShowHelper] = useState(false);
+  const [loadingEmail, setLoadingEmail] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    console.log(inputRef.current?.value);
-    signIn("email", { email: inputRef.current?.value, callbackUrl: "/" });
-  };
+    setLoadingEmail(true);
+    const email = z.string().email().parse(inputRef.current?.value);
+    try {
+      await signIn("email", { email, callbackUrl: "/" });
+    } catch (error) {
+      console.log(error);
+    }
+
+    setLoadingEmail(false);
+  }
 
   return (
-    <div className="mt-4">
-      <form onSubmit={handleSubmit} className="flex flex-col w-[200px] gap-4">
-        <input ref={inputRef} type="email" className="text-black" />
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 mt-12 md:w-[450px] mx-auto"
+    >
+      <div className="mb-2">
+        <Input
+          required
+          ref={inputRef}
+          type="email"
+          placeholder="Email"
+          onFocus={() => setShowHelper(true)}
+          onBlur={() => setShowHelper(false)}
+        />
+        {showHelper ? (
+          <TypographyMuted className="text-left mt-1.5">
+            Al iniciar sesión con tu correo, recibirás un enlace de acceso.
+          </TypographyMuted>
+        ) : (
+          <div className="h-[26px]" />
+        )}
+      </div>
 
-        <Button type="submit">Sign in</Button>
-      </form>
-    </div>
+      {loadingEmail ? (
+        <Loader className="animate-spin text-primary mx-auto w-8 h-8" />
+      ) : (
+        <Button type="submit">Iniciar sesión</Button>
+      )}
+
+      <hr className="my-2" />
+
+      <Button onClick={() => signIn("github")}>
+        <Github size={18} className="mr-2" />
+        Iniciar sesión con Github
+      </Button>
+    </form>
   );
 }
