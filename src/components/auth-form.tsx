@@ -63,7 +63,7 @@ export default function AuthForm() {
 
       <hr className="my-2" />
 
-      <Button onClick={() => signIn("github")}>
+      <Button onClick={() => signIn("github")} type="button">
         <Github size={18} className="mr-2" />
         Iniciar sesión con Github
       </Button>

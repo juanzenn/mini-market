@@ -1,5 +1,8 @@
 import Navbar from "@/components/navbar";
+import Avatar from "@/components/ui/avatar";
+import { getCurrentUser } from "@/lib/session";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -12,20 +15,19 @@ export default async function MarketingLayout({ children }: Props) {
     | "dark"
     | undefined;
 
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) redirect("/login");
+
   return (
     <>
       <Navbar defaultTheme={themeCookie}>
-        {/* <Link
-          href="/login"
-          className={cn(
-            buttonVariants({
-              variant: "default",
-            }),
-            "mr-4 bg-sky-500 hover:bg-sky-600 text-white"
-          )}
-        >
-          Login
-        </Link> */}
+        <Avatar
+          className="mr-4"
+          avatarImage={currentUser.image ?? undefined}
+          avatarFallback={currentUser.name?.[0].toUpperCase() ?? "C"}
+          alt="user-profile-avatar"
+        />
       </Navbar>
 
       <main className="container py-6 ">{children}</main>
