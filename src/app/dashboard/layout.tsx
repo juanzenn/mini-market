@@ -1,9 +1,11 @@
 import Navbar from "@/components/navbar";
+import Sidebar from "@/components/sidebar";
 import Avatar from "@/components/ui/avatar";
 import { getCurrentUser } from "@/lib/session";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import React from "react";
+import DashboardSidebar from "./dashboard-sidebar";
 
 type Props = {
   children: React.ReactNode;
@@ -30,7 +32,13 @@ export default async function MarketingLayout({ children }: Props) {
         />
       </Navbar>
 
-      <main className="container py-6 ">{children}</main>
+      <main className="container py-6 flex h-4/5">
+        <DashboardSidebar />
+
+        <section className="flex-1 pl-8 h-full overflow-auto">
+          {children}
+        </section>
+      </main>
     </>
   );
 }
