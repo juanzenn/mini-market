@@ -10,7 +10,6 @@ export default function UploadThingButton() {
     <UploadDropzone<OurFileRouter>
       endpoint="imageUploader"
       onClientUploadComplete={(res) => {
-        console.log("Files: ", res);
         alert("Upload Completed");
       }}
       onUploadError={(error: Error) => {
