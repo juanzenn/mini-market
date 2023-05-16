@@ -3,7 +3,7 @@
 import { AccessibleIcon } from "@radix-ui/react-accessible-icon";
 import Cookies from "js-cookie";
 import { LucideIcon, Moon, Sun } from "lucide-react";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface ThemeContextType {
   theme?: "light" | "dark";

@@ -1,5 +1,4 @@
 import Navbar from "@/components/navbar";
-import Sidebar from "@/components/sidebar";
 import Avatar from "@/components/ui/avatar";
 import { getCurrentUser } from "@/lib/session";
 import { cookies } from "next/headers";

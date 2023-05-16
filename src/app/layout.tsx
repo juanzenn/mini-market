@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
+import React from "react";
 
 const inter = Inter({
   subsets: ["latin"],

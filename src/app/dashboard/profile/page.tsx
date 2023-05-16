@@ -1,8 +1,4 @@
-import Avatar from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { TypographyH1, TypographyMuted } from "@/components/ui/typography";
+import { TypographyH1 } from "@/components/ui/typography";
 import { getCurrentUser } from "@/lib/session";
 import React from "react";
 import ProfileForm from "./profile-form";

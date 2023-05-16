@@ -51,7 +51,6 @@ function SidebarItem({
 function SidebarDrawerItem({
   children,
   Icon,
-  href,
   label,
   ...rest
 }: React.HTMLProps<HTMLLIElement> & { Icon: LucideIcon }) {
