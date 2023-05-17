@@ -1,4 +1,7 @@
-import { createUploadthing, type FileRouter } from "uploadthing/next";
+import {
+  createUploadthing,
+  type FileRouter as UploadThingFileRouter,
+} from "uploadthing/next";
 const f = createUploadthing();
 
 const auth = () => ({ id: "fakeId" }); // Fake auth function
@@ -26,6 +29,6 @@ export const ourFileRouter = {
 
       console.log("file url", file.url);
     }),
-} satisfies FileRouter;
+} satisfies UploadThingFileRouter;
 
-export type OurFileRouter = typeof ourFileRouter;
+export type FileRouter = typeof ourFileRouter;

@@ -2,7 +2,15 @@
 
 import Sidebar from "@/components/sidebar";
 import { Button } from "@/components/ui/button";
-import { Home, Loader, LogOut, User } from "lucide-react";
+import {
+  Boxes,
+  Home,
+  Loader,
+  LogOut,
+  Package,
+  PackagePlus,
+  User,
+} from "lucide-react";
 import { signOut } from "next-auth/react";
 import { Suspense, useState } from "react";
 
@@ -20,11 +28,24 @@ export default function DashboardSidebar() {
   }
 
   return (
-    <Suspense fallback="...">
+    <Suspense>
       <Sidebar>
-        <Sidebar.Item href="/dashboard" Icon={Home}>
-          Dashboard
-        </Sidebar.Item>
+        <ul className="space-y-2">
+          <Sidebar.Item href="/dashboard" Icon={Home}>
+            Dashboard
+          </Sidebar.Item>
+          <Sidebar.DrawerItem Icon={Package} label="Productos">
+            <Sidebar.Item href={getDashboardLink("products")} Icon={Boxes}>
+              Mis productos
+            </Sidebar.Item>
+            <Sidebar.Item
+              href={getDashboardLink("products/create")}
+              Icon={PackagePlus}
+            >
+              Crear producto
+            </Sidebar.Item>
+          </Sidebar.DrawerItem>
+        </ul>
 
         <ul className="space-y-2">
           <Sidebar.Item href={getDashboardLink("profile")} Icon={User}>
